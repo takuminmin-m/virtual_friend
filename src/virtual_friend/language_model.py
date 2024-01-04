@@ -27,7 +27,7 @@ class LanguageModel():
     def generate(self, prompt:str):
         output = self.generator(
             prompt,
-            max_length=256,
+            max_new_tokens=64,
             do_sample=True,
             temperature = 0.7,
             top_p = 0.9,
@@ -37,6 +37,7 @@ class LanguageModel():
             pad_token_id = self.tokenizer.pad_token_id,
             num_return_sequences = 1,
         )
+        print(output)
         return output[0]["generated_text"]
 
     def __call__(self, prompt:str):
